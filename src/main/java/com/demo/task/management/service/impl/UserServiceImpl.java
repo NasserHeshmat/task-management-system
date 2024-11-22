@@ -1,26 +1,26 @@
 package com.demo.task.management.service.impl;
 
-import com.demo.task.management.entity.Student;
+import com.demo.task.management.entity.User;
 import com.demo.task.management.exception.CustomException;
-import com.demo.task.management.service.StudentService;
+import com.demo.task.management.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.demo.task.management.repository.StudentRepository;
+import com.demo.task.management.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import static com.demo.task.management.constant.ErrorMessages.USER_ALREADY_EXISTS;
 
 @Service
 @AllArgsConstructor
-public class StudentServiceImpl implements StudentService {
+public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
-    private final StudentRepository studentRepository;
+    private final UserRepository userRepository;
     @Override
-    public void registerStudent(Student student) {
-        student.setPassword(passwordEncoder.encode(student.getPassword()));
-        if(studentRepository.existsByEmail(student.getEmail()))
+    public void registerUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if(userRepository.existsByUsername(user.getUsername()))
             throw new CustomException(USER_ALREADY_EXISTS, HttpStatus.CONFLICT);
-        studentRepository.save(student);
+        userRepository.save(user);
     }
 }

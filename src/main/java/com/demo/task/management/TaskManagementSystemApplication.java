@@ -4,11 +4,12 @@ package com.demo.task.management;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableCaching
-public class StudentManagementSystemApplication {
+@EnableScheduling
+public class TaskManagementSystemApplication {
     public static void main(String[] args) {
-        SpringApplication.run(StudentManagementSystemApplication.class, args);
+        SpringApplication.run(TaskManagementSystemApplication.class, args);
     }
 }

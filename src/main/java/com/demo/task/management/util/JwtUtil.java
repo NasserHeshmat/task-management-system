@@ -3,10 +3,10 @@ package com.demo.task.management.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.*;
 import java.util.function.Function;
 
 import static com.demo.task.management.constant.Constants.*;
@@ -30,13 +30,18 @@ public class JwtUtil {
     private Claims extractAllClaims(String token) {
         return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
     }
+    public List<String> extractRoles(String token) {
+        Claims claims = extractAllClaims(token);
+        return (List<String>) claims.get("roles");
+    }
 
     public Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(String username, boolean isRefreshToken) {
+    public String generateToken(String username, boolean isRefreshToken, Collection<? extends GrantedAuthority> roles) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("roles", roles.stream().map(GrantedAuthority::getAuthority).toArray());
         return createToken(claims, username, isRefreshToken);
     }
 

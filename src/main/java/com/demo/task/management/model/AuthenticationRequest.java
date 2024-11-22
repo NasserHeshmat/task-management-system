@@ -12,9 +12,9 @@ import static com.demo.task.management.constant.ErrorMessages.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthenticationRequest {
-    @Email(message = INVALID_EMAIL)
+
     @NotBlank(message = EMAIL_BLANK)
-    private String email;
+    private String username;
     @NotBlank(message = PASSWORD_BLANK)
     private String password;
 
