@@ -1,12 +1,15 @@
 package com.demo.task.management.service;
 
 import com.demo.task.management.entity.Task;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TaskService {
-    List<Task> getAllTasks();
+
+    Page<Task> getAllTasks(Pageable pageable);
 
     Optional<Task> getTaskById(Long id);
 
@@ -15,4 +18,6 @@ public interface TaskService {
     Task updateTask(Long id, Task updatedTask);
 
     void deleteTask(Long id);
+
+    List<Task> searchTasks(Task task);
 }

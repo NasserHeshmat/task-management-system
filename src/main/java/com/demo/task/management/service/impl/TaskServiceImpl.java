@@ -4,6 +4,8 @@ import com.demo.task.management.entity.Task;
 import com.demo.task.management.repository.TaskRepository;
 import com.demo.task.management.service.TaskService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +18,8 @@ public class TaskServiceImpl implements TaskService {
     private TaskRepository taskRepository;
 
     @Override
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+    public Page<Task> getAllTasks(Pageable pageable) {
+        return taskRepository.findAll(pageable);
     }
     @Override
     public Optional<Task> getTaskById(Long id) {
@@ -41,5 +43,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTask(Long id) {
         taskRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Task> searchTasks(Task task) {
+        return taskRepository.searchTasks(task.getTitle(),task.getDescription(),task.getStatus(),task.getDueDate());
     }
 }
