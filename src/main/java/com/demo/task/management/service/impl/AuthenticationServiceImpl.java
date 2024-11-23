@@ -44,8 +44,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         } catch (Exception e) {
             throw new CustomException(INVALID_CREDENTIALS, HttpStatus.FORBIDDEN);
         }
-//        User user = userRepository.findByUsername(authRequest.getUsername());
-//        Set<Role> roleSet = user.getRoles();
+
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
         Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
 

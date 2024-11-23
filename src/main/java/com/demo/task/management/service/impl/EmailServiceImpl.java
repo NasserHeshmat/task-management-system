@@ -1,16 +1,16 @@
 package com.demo.task.management.service.impl;
 
 import com.demo.task.management.service.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class EmailServiceImpl implements EmailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
     @Override
     public void sendEmail(String to, String subject, String text) {

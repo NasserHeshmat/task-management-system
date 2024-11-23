@@ -21,9 +21,4 @@ public final class ErrorMessages {
     public static final String REFRESH_TOKEN_BLANK ="refresh token cannot be empty";
     public static final String EMAIL_BLANK ="Please enter your Email";
     public static final String TASK_DELETED ="Task is deleted successfully";
-
-
-
-
-
 }
