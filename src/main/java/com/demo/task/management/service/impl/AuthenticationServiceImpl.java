@@ -1,6 +1,5 @@
 package com.demo.task.management.service.impl;
 
-
 import com.demo.task.management.exception.CustomException;
 import com.demo.task.management.model.AuthenticationRequest;
 import com.demo.task.management.model.AuthenticationResponse;
@@ -19,11 +18,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import static com.demo.task.management.constant.ErrorMessages.*;
 
@@ -33,7 +29,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
-    private final Set<String > usedRefreshTokens = new HashSet<>();
     private final UserRepository userRepository;
     @Override
     public AuthenticationResponse createAuthenticationTokens(AuthenticationRequest authRequest) {
@@ -59,16 +54,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (jwtUtil.isTokenExpired(refreshTokenRequest.getRefreshToken()) || !jwtUtil.isRefreshToken(refreshTokenRequest.getRefreshToken())) {
             throw new CustomException(INVALID_TOKEN, HttpStatus.FORBIDDEN);
         }
-        if (usedRefreshTokens.contains(refreshTokenRequest.getRefreshToken())) {
-            throw new CustomException(USED_REFRESH_TOKEN, HttpStatus.FORBIDDEN);
-        }
-        usedRefreshTokens.add(refreshTokenRequest.getRefreshToken());
         List<String> roles = jwtUtil.extractRoles(refreshTokenRequest.getRefreshToken());
 
         Collection<? extends GrantedAuthority> authorities = roles.stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-
 
         String username = jwtUtil.extractUsername(refreshTokenRequest.getRefreshToken());
         return new RefreshTokenResponse(jwtUtil.generateToken(username, false,authorities));
