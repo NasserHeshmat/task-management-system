@@ -31,10 +31,15 @@ The application uses an Oracle database by default. Follow these steps to set up
 
 3. **Initialize the Database with `data.sql`**
    - The file `src/main/resources/data.sql` contains seed data for the application.
-   - make sure at your first run from the following property is set:
-     spring.sql.init.mode=always
+   - make sure at your first run that the following property is set:
+      ```bash
+   spring.sql.init.mode=always
+   ```
+     
    - after that you can make it a:
-     spring.sql.init.mode=never
+      ```bash
+   spring.sql.init.mode=never
+   ```
 
 
 ---
