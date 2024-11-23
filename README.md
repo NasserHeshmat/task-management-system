@@ -42,18 +42,19 @@ The application uses an Oracle database by default. Follow these steps to set up
 ---
 
 ### 3. **Task Notification Scheduler Configuration**
-      -The Task Notification Scheduler is responsible for sending email reminders about tasks that are due soon. The time of execution and the recipient email address can be configured through the application.properties file.
+   The Task Notification Scheduler is responsible for sending email reminders about tasks that are due soon. The time of execution and the recipient email address can be configured through the application.properties file.
    
-   **How It Works**
+   1. **How It Works**
+
       -The application uses the **task.notification.cron property** to schedule the execution of the task notification job.
 
       -The **task.notification.email** property determines the recipient email address for the reminders.
 
       -The scheduler fetches tasks that are due tomorrow and sends an email notification to the configured email address.
 
-   **Example**
+   2. **Example**
    
-      -To configure the scheduler to run at 8:30 AM and send notifications to admin@example.com, update your application.properties as follows:
+      To configure the scheduler to run at 8:30 AM and send notifications to admin@example.com, update your application.properties as follows:
       ```bash
       task.notification.cron=0 30 8 * * ?
       task.notification.email=admin@example.com
