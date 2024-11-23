@@ -13,7 +13,7 @@ import static com.demo.task.management.constant.ErrorMessages.*;
 @NoArgsConstructor
 public class AuthenticationRequest {
 
-    @NotBlank(message = EMAIL_BLANK)
+    @NotBlank(message = BLANK_USERNAME)
     private String username;
     @NotBlank(message = PASSWORD_BLANK)
     private String password;

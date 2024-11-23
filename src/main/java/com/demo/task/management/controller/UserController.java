@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import static com.demo.task.management.constant.ErrorMessages.STUDENT_CREATED_SUCCESSFULLY;
+import static com.demo.task.management.constant.ErrorMessages.USER_CREATED_SUCCESSFULLY;
 
 @RestController
 @AllArgsConstructor
@@ -19,6 +19,6 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<ConfirmationResponse> registerUser(@Valid @RequestBody User user) {
         userService.registerUser(user);
-        return ResponseEntity.ok(new ConfirmationResponse(STUDENT_CREATED_SUCCESSFULLY));
+        return ResponseEntity.ok(new ConfirmationResponse(USER_CREATED_SUCCESSFULLY));
     }
 }
