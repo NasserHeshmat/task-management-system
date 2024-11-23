@@ -5,7 +5,7 @@ INSERT INTO TASK (TITLE, DESCRIPTION, STATUS, PRIORITY, DUE_DATE)
 VALUES ('Prepare Presentation', 'Create slides for the demo', 'IN_PROGRESS', 2, TO_DATE('2024-12-05', 'YYYY-MM-DD'));
 
 INSERT INTO TASK (TITLE, DESCRIPTION, STATUS, PRIORITY, DUE_DATE)
-VALUES ('Submit Report', 'Submit the final project report', 'DONE', 3, TO_DATE('2024-12-01', 'YYYY-MM-DD'));
+VALUES ('Submit Report', 'Submit the final project report', 'DONE', 3, TO_DATE('2024-11-24', 'YYYY-MM-DD'));
 
 -- Insert roles
 INSERT INTO ROLE (NAME) VALUES ('ROLE_ADMIN');

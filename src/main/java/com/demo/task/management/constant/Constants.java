@@ -7,5 +7,8 @@ public final class Constants {
     public static final Integer REFRESH_EXPIRATION_PERIOD = 1000 * 60 * 10;
     public static final String AUTH_HEADER = "Authorization";
     public static final String BEARER = "Bearer ";
+    public static final String EMAIL_BODY ="Reminder: Task '%s' is due on %s.";
+    public static final String EMAIL_SUBJECT ="Upcoming Task Deadline";
+
 
 }
